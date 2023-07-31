@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Management System</title>
+    <link rel="stylesheet" type="text/css" href="student.css">
+</head>
+<body>
+    <h1>Student Management System</h1>
+    <div class="container">
+        <div class="form-container">
+            <h2>Add Student</h2>
+            <form>
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name">
+                <label for="id">ID:</label>
+                <input type="text" id="id" name="id">
+                <label for="location">LOCATION:</label>
+                <input type="text" id="location" name="location">
+                <button type="button" onclick="addStudent()">Add</button>
+            </form>
+        </div>
+        <div class="list-container">
+            <h2>Student List</h2>
+            <ul id="student-list"></ul>
+        </div>
+    </div>
+    </div>
+ 
+    <script>
+        // Define an array to store all student records
+var students = [];
+
+// Function to add a new student record
+function addStudent() {
+    var name = document.getElementById("name").value;
+    var id = document.getElementById("id").value;
+    var location = document.getElementById("location").value;
+    var student = {name: name, id: id, location: location};
+    students.push(student);
+    document.getElementById("name").value = "";
+    document.getElementById("id").value = "";
+    document.getElementById("location").value = "";
+    displayStudents();
+}
+
+// Function to display a list of all student records
+function displayStudents() {
+    var studentList = document.getElementById("student-list");
+    studentList.innerHTML = "";
+    for (var i = 0; i < students.length; i++) {
+        var li = document.createElement("li");
+        var text = document.createTextNode(students[i].name + " (" + students[i].id + ") - location: " + students[i].location);
+        li.appendChild(text);
+        studentList.appendChild(li);
+    }
+}
+
+// Call displayStudents() on page load
+window.onload = function() {
+    displayStudents();
+};
+
+    </script>
+</body>
+</html>
